@@ -2,5 +2,8 @@
 A chrome extension to switch current tab or link from incognito window to normal window, or vice versa.
 
 # How to install
-1. Add the extension to your Chrome from [Chrome Web Store](https://chrome.google.com/webstore/detail/incognito-or-not/bjgbcgencjbpjmghkipepgdmgpelenpg)
-2. check the **Allow in incognito** option of the extension in `chrome://extensions/`
+1. [Download](https://github.com/josephyooo/Incognito-or-not/archive/refs/heads/master.zip) and unzip repo.
+2. Go to the extensions page (chrome://extensions/) and enable developer mode in the top right.
+3. Click load unpacked in top left.
+4. Select unzipped folder.
+5. Allow for use in incognito if you want to switch from incognito to normal.
