@@ -5,9 +5,7 @@ chrome.browserAction.onClicked.addListener(function (tab) {
       if (windows[i].id == tab.windowId) {
         createNewTabsInOppositeMode(windows[i].tabs, tab.incognito);
 
-        windows[i].tabs.forEach(function removetab(tab) {
-          chrome.tabs.remove(tab.id);
-        })
+        chrome.windows.remove(windows[i].id)
         return;
       } 
     }
@@ -28,12 +26,18 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
 
 function openTabsInWindow(tabs, windowid, incognito) {
   // creates tabs in window of given mode if window given, else creates tabs in new window
-  tabs.forEach(function tabsscallback(tab) {
-    if (!windowid) {
-      chrome.windows.create({ url: tab.url, incognito: incognito });
-      return;
-    }
-    chrome.tabs.create({ windowId: windowid, url: tab.url, active: true });
+  urls = [];
+  tabs.forEach(function getUrls(tab) {
+    urls.push(tab.url)
+  })
+
+  if (!windowid) {
+    chrome.windows.create({ url: urls, incognito: incognito });
+    return;
+  }
+
+  urls.forEach(function createTab(url) {
+    chrome.tabs.create({ windowId: windowid, url: url, active: true });
   })
 }
 
